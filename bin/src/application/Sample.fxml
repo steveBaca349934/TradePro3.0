@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.AmbientLight?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="818.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+   <top>
+      <MenuBar fx:id="mainMenuBar" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+            <Menu fx:id="yourOptions" mnemonicParsing="false" text="Options">
+              <items>
+                  <MenuItem fx:id="thisMenuItem" mnemonicParsing="false" onAction="#MainMenuBar" text="Portfolio " />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <right>
+      <LineChart fx:id="mainGraphView" prefHeight="390.0" prefWidth="1250.0" BorderPane.alignment="CENTER">
+        <xAxis>
+          <CategoryAxis prefHeight="0.0" prefWidth="410.0" side="BOTTOM" fx:id="x" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" prefHeight="313.0" prefWidth="30.0" side="LEFT" />
+        </yAxis>
+      </LineChart>
+   </right>
+   <center>
+      <AmbientLight color="CHARTREUSE" lightOn="true" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <SplitPane fx:id="mainScrollPanel" dividerPositions="0.3137254901960784" prefHeight="109.0" prefWidth="818.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="107.0" prefWidth="256.0">
+               <children>
+                  <TextField fx:id="analystRecommendation" layoutX="45.0" layoutY="14.0" prefHeight="31.0" prefWidth="157.0" text="Analyst Recommendation" />
+                  <TextField fx:id="actualAnalystRecommendation" alignment="CENTER" layoutX="43.0" layoutY="54.0" prefHeight="52.0" prefWidth="161.0" text="Buy !" />
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="107.0" prefWidth="463.0" style="-fx-background-color: LemonChiffonLemonChiffon;">
+               <children>
+                  <TextField fx:id="textBox1" alignment="CENTER" blendMode="DARKEN" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="103.0" text="Metric One" />
+                  <TextField fx:id="textBox2" alignment="CENTER" blendMode="DARKEN" layoutX="151.0" layoutY="14.0" prefHeight="27.0" prefWidth="103.0" text="Metric Two" />
+                  <TextField fx:id="textBox4" alignment="CENTER" blendMode="DARKEN" layoutX="445.0" layoutY="14.0" prefHeight="27.0" prefWidth="103.0" text="Metric Four" />
+                  <TextField fx:id="textBox3" alignment="CENTER" blendMode="DARKEN" layoutX="301.0" layoutY="14.0" prefHeight="27.0" prefWidth="103.0" text="Metric Three" />
+                  <TextField fx:id="metricOneShower" alignment="CENTER" layoutX="13.0" layoutY="54.0" prefHeight="50.0" prefWidth="105.0" text="1234" />
+                  <TextField fx:id="metricTwoShower" alignment="CENTER" layoutX="150.0" layoutY="54.0" prefHeight="50.0" prefWidth="105.0" text="1234" />
+                  <TextField fx:id="metricThreeShower" alignment="CENTER" layoutX="300.0" layoutY="54.0" prefHeight="50.0" prefWidth="105.0" text="1234" />
+                  <TextField fx:id="metricFourShower" alignment="CENTER" layoutX="444.0" layoutY="54.0" prefHeight="50.0" prefWidth="105.0" text="1234" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </bottom>
+   <left>
+      <ScrollPane fx:id="mainScrollPane" hbarPolicy="NEVER" prefHeight="390.0" prefWidth="260.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="mainVBox" prefHeight="390.0" prefWidth="256.0" />
+         </content>
+      </ScrollPane>
+   </left>
+</BorderPane>

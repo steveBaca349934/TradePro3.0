@@ -1,0 +1,127 @@
+/**
+ * This is all just adding CSS styles and colors to the GUI
+ */
+
+.root{
+	-fx-background-color: DarkGrey;
+}
+
+#stockButtons{
+	
+	/* -fx-background-color: Blue; */
+	-fx-cursor: hand;
+}
+
+ #thisPortfolio{
+	-fx-background-color: #222;
+	color: #e6e6e6;
+    border-color: #e6e6e6;
+}
+
+#thisVBox{
+	-fx-background-color: #010007;
+}
+
+#menuBar{
+	-fx-background-color: #010007;
+	-fx-border-color: DarkGrey;
+}
+
+#fileButton{
+	-fx-text-fill: white;
+}
+
+#timeCategoryAxis{
+	-fx-background-color: DarkGray;
+}
+
+#stockReturnPercentageNumberAxis{
+	-fx-background-color: DarkGray;
+}
+
+#tempButton{
+	-fx-background-color: #222;
+	-fx-border-color: GhostWhite;
+	-fx-cursor: hand;
+	-fx-text-fill: GhostWhite;
+	
+}
+
+#tempButton:hover{
+	-fx-background-color: DarkGray;
+}
+#tempButton:pressed{
+	-fx-background-color: GhostWhite;
+	-fx-text-fill: Black;
+}
+
+#fileButton .label{
+	-fx-text-fill: GhostWhite;
+}
+#editButton .label{
+	-fx-text-fill: GhostWhite;
+}
+#helpButton .label{
+	-fx-text-fill: GhostWhite;
+}
+#optionsButton .label{
+	-fx-text-fill: GhostWhite;
+}
+#ratAnchorPane{
+	-fx-background-color: #222;
+	-fx-border-color: GhostWhite;
+	
+}
+#ratMenuBar{
+	-fx-background-color: #010007;
+}
+#ratFileButton .label{
+	-fx-text-fill: GhostWhite;
+}
+#ratEditButton .label{
+	-fx-text-fill: GhostWhite;
+}
+#ratHelpButton .label{
+	-fx-text-fill: GhostWhite;
+}
+#ratOptionsButton .label{
+	-fx-text-fill: GhostWhite;
+}
+#portfolioBuilderMenuItem .label{
+	-fx-text-fill: Black;
+}
+#ratMenuItemClose .label{
+	-fx-text-fill: Black;
+}
+#ratMenuItemDelete .label{
+	-fx-text-fill: Black;
+}
+#ratMenuItemAbout .label{
+	-fx-text-fill: Black;
+}
+#thisRiskAssessmentMenuItem .label{
+		-fx-text-fill: Black;
+}
+#menuItemClose .label{
+		-fx-text-fill: Black;
+}
+#menuItemDelete .label{
+		-fx-text-fill: Black;
+}
+#menuItemAbout .label{
+		-fx-text-fill: Black;
+}
+
+#portfolioTracker{
+	-fx-background-color: #222;
+	-fx-border-color: GhostWhite;
+	-fx-cursor: hand;
+	-fx-text-fill: GhostWhite;
+}
+#futureWeights{
+	-fx-background-color: #222;
+	-fx-border-color: GhostWhite;
+	-fx-cursor: hand;
+	-fx-text-fill: GhostWhite;
+}
+

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RiskAssessmentTestController">
+   <children>
+      <AnchorPane fx:id="ratAnchorPane" layoutX="1.0" layoutY="1.0" prefHeight="765.0" prefWidth="843.0">
+         <children>
+            <MenuBar fx:id="ratMenuBar" prefHeight="29.0" prefWidth="843.0">
+              <menus>
+                <Menu fx:id="ratFileButton" mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="ratMenuItemClose" mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu fx:id="ratEditButton" mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem fx:id="ratMenuItemDelete" mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu fx:id="ratHelpButton" mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="ratMenuItemAbout" mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+                  <Menu fx:id="ratOptionsButton" mnemonicParsing="false" text="Options">
+                    <items>
+                      <MenuItem fx:id="portfolioBuilderMenuItem" mnemonicParsing="false" text="Portfolio Builder" />
+                    </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+            <TextField fx:id="ratTextBox" layoutX="321.0" layoutY="29.0" prefHeight="27.0" prefWidth="230.0" text="Welcome to The Risk Assessment Test" />
+            <Text fill="#eee4e4" layoutX="142.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Risk Rating" />
+            <TextField fx:id="riskRating" layoutX="92.0" layoutY="85.0" promptText="Calculated Based Off Test" />
+            <Text fill="#f8efef" layoutX="592.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recommended Investment Timeline" />
+            <TextField fx:id="recommendedInvestmentTimeline" layoutX="609.0" layoutY="85.0" promptText="Calculated Based Off Test" />
+            <Text fill="#ffebeb" layoutX="70.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I plan to begin withdrawing money from my investments in . . ." wrappingWidth="203.90966796875" />
+            <TextField fx:id="q1TextBox" layoutX="69.0" layoutY="196.0" prefHeight="51.0" prefWidth="184.0" />
+            <Text fill="#f8e7e7" layoutX="74.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="As I withdraw money, I plan to spend money over  a period of ..." wrappingWidth="195.29833984375" />
+            <TextField fx:id="q2TextBox" layoutX="69.0" layoutY="307.0" prefHeight="51.0" prefWidth="184.0" />
+            <TextField fx:id="q3TextBox" layoutX="66.0" layoutY="446.0" prefHeight="51.0" prefWidth="184.0" />
+            <Button fx:id="seeResultsButton" layoutX="395.0" layoutY="112.0" mnemonicParsing="false" onAction="#AddEmUp" text="See Results" />
+            <MenuButton fx:id="q1Menubutton" layoutX="122.0" layoutY="196.0" mnemonicParsing="false" text="Answer">
+              <items>
+                <MenuItem fx:id="ratq1MenuItem1" mnemonicParsing="false" text="Less than 1 year" />
+                <MenuItem fx:id="ratq1MenuItem2" mnemonicParsing="false" text="1 - 5 years" />
+                  <MenuItem fx:id="ratq1MenuItem3" mnemonicParsing="false" text="6-10 years" />
+                  <MenuItem fx:id="ratq1MenuItem4" mnemonicParsing="false" text="10 - 15 years" />
+                  <MenuItem fx:id="ratq1MenuItem5" mnemonicParsing="false" text="15 + years" />
+              </items>
+            </MenuButton>
+            <MenuButton fx:id="q2Menubutton" layoutX="122.0" layoutY="307.0" mnemonicParsing="false" onAction="#Question2Return" text="Answer">
+               <items>
+                  <MenuItem fx:id="ratq2MenuItem1" mnemonicParsing="false" text="2 years or less" />
+                  <MenuItem fx:id="ratq2MenuItem2" mnemonicParsing="false" text="3-5 years" />
+                  <MenuItem fx:id="ratq2MenuItem3" mnemonicParsing="false" text="6-10 years" />
+                  <MenuItem fx:id="ratq2MenuItem4" mnemonicParsing="false" text="11-15 years" />
+                  <MenuItem fx:id="ratq2MenuItem5" mnemonicParsing="false" text="more than 15 years" />
+               </items>
+            </MenuButton>
+            <Text fill="#fcebeb" layoutX="63.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When making a long-term investment, I plan to keep the money invested for . . ." wrappingWidth="195.29833984375" />
+            <MenuButton fx:id="q3Menubutton" layoutX="119.0" layoutY="446.0" mnemonicParsing="false" text="Answer">
+               <items>
+                  <MenuItem fx:id="ratq3MenuItem1" mnemonicParsing="false" text="1-2 years" />
+                  <MenuItem fx:id="ratq3MenuItem2" mnemonicParsing="false" text="3-4 years" />
+                  <MenuItem fx:id="ratq3MenuItem3" mnemonicParsing="false" text="5-6 years" />
+                  <MenuItem fx:id="ratq3MenuItem4" mnemonicParsing="false" text="7-8 years" />
+                  <MenuItem fx:id="ratq3MenuItem5" mnemonicParsing="false" text="8 + years" />
+               </items>
+            </MenuButton>
+            <Text fill="#f5e3e3" layoutX="69.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From September 2008 through November 2008, U.S. stocks lost more than 31% of their value. If I owned a stock investment that lost 30% of its value in a short period, I would … (If you owned stocks in 2008, please select the answer that matches your actions at that time.)" wrappingWidth="184.0" />
+            <TextField fx:id="q4TextBox" layoutX="69.0" layoutY="672.0" prefHeight="51.0" prefWidth="184.0" />
+            <MenuButton fx:id="q4Menubutton" layoutX="119.0" layoutY="672.0" mnemonicParsing="false" text="Answer">
+               <items>
+                  <MenuItem fx:id="ratq4MenuItem1" mnemonicParsing="false" text="Sell all of the remaining investments" />
+                  <MenuItem fx:id="ratq4MenuItem2" mnemonicParsing="false" text="Sell some of the remaining investments" />
+                  <MenuItem fx:id="ratq4MenuItem3" mnemonicParsing="false" text="Hold on to the investments and do nothing" />
+                  <MenuItem fx:id="ratq4MenuItem4" mnemonicParsing="false" text="Buy more of the investment" />
+                  <MenuItem fx:id="ratq4MenuItem5" mnemonicParsing="false" text="Bet your whole net worth on a leveraged call option" />
+               </items>
+            </MenuButton>
+            <Text fill="#fcf0f0" layoutX="590.0" layoutY="580.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generally, I prefer investments with few dramatic ups or downs in value, and I am willing to accept the lower returns these investments may produce." wrappingWidth="203.90966796875" />
+            <TextField fx:id="q12TextBox" layoutX="598.0" layoutY="672.0" prefHeight="51.0" prefWidth="184.0" />
+            <MenuButton fx:id="q12Menubutton" layoutX="653.0" layoutY="672.0" mnemonicParsing="false" text="Answer">
+               <items>
+                  <MenuItem fx:id="ratq12MenuItem1" mnemonicParsing="false" text="I strongly disagree" />
+                  <MenuItem fx:id="ratq12MenuItem2" mnemonicParsing="false" text="I disagree" />
+                  <MenuItem fx:id="ratq12MenuItem3" mnemonicParsing="false" text="I somewhat agree" />
+                  <MenuItem fx:id="ratq12MenuItem4" mnemonicParsing="false" text="I agree" />
+                  <MenuItem fx:id="ratq12MenuItem5" mnemonicParsing="false" text="I strongly agree" />
+               </items>
+            </MenuButton>
+            <Text fill="#fcebeb" layoutX="347.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I would invest in a mutual fund based only on a brief conversation with a friend, coworker or relative." wrappingWidth="203.90966796875" />
+            <TextField fx:id="q6TextBox" layoutX="344.0" layoutY="307.0" prefHeight="51.0" prefWidth="184.0" />
+            <MenuButton fx:id="q6Menubutton" layoutX="397.0" layoutY="307.0" mnemonicParsing="false" text="Answer">
+               <items>
+                  <MenuItem fx:id="ratq6MenuItem1" mnemonicParsing="false" text="I strongly disagree" />
+                  <MenuItem fx:id="ratq6MenuItem2" mnemonicParsing="false" text="I disagree" />
+                  <MenuItem fx:id="ratq6MenuItem3" mnemonicParsing="false" text="I somewhat agree" />
+                  <MenuItem fx:id="ratq6MenuItem4" mnemonicParsing="false" text="I agree" />
+                  <MenuItem fx:id="ratq6MenuItem5" mnemonicParsing="false" text="I strongly agree" />
+               </items>
+            </MenuButton>
+            <Text fill="#f8e9e9" layoutX="344.0" layoutY="545.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From September 2008 through October 2008, U.S. bonds lost nearly 4% of their value. If I owned a bond investment that lost almost 4% of its value in a short period, I would … (If you owned bonds in 2008, please select the answer that matches your actions at that time.)" wrappingWidth="183.9999999999999" />
+            <TextField fx:id="q8TextBox" layoutX="344.0" layoutY="672.0" prefHeight="51.0" prefWidth="184.0" />
+            <MenuButton fx:id="q8Menubutton" layoutX="397.0" layoutY="672.0" mnemonicParsing="false" text="Answer">
+               <items>
+                  <MenuItem fx:id="ratq8MenuItem1" mnemonicParsing="false" text="Sell all of the remaining investment" />
+                  <MenuItem fx:id="ratq8MenuItem2" mnemonicParsing="false" text="Sell some of the remaining investment" />
+                  <MenuItem fx:id="ratq8MenuItem3" mnemonicParsing="false" text=" Hold on to the investment and sell nothing" />
+                  <MenuItem fx:id="ratq8MenuItem4" mnemonicParsing="false" text="Buy more of the investment" />
+                  <MenuItem fx:id="ratq8MenuItem5" mnemonicParsing="false" text="Bet your bank account on a leveraged call for a bond based etf" />
+               </items>
+            </MenuButton>
+            <Text fill="#fceeee" layoutX="344.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Others describe you as ambitious and willing to take risks..." wrappingWidth="183.9999999999999" />
+            <TextField fx:id="q7TextBox" layoutX="344.0" layoutY="446.0" prefHeight="51.0" prefWidth="184.0" />
+            <MenuButton fx:id="q7Menubutton" layoutX="397.0" layoutY="446.0" mnemonicParsing="false" text="Answer">
+               <items>
+                  <MenuItem fx:id="ratq7MenuItem1" mnemonicParsing="false" text="I strongly disagree" />
+                  <MenuItem fx:id="ratq7MenuItem2" mnemonicParsing="false" text="I disagree" />
+                  <MenuItem fx:id="ratq7MenuItem3" mnemonicParsing="false" text="I somewhat agree" />
+                  <MenuItem fx:id="ratq7MenuItem4" mnemonicParsing="false" text="I agree" />
+                  <MenuItem fx:id="ratq7MenuItem5" mnemonicParsing="false" text="I strongly agree" />
+               </items>
+            </MenuButton>
+            <Text fill="#fff2f2" layoutX="592.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My current and future income sources (such as salary or pension) are . . ." wrappingWidth="213.90966796875" />
+            <TextField fx:id="q9TextBox" layoutX="600.0" layoutY="196.0" prefHeight="51.0" prefWidth="184.0" />
+            <MenuButton fx:id="q9Menubutton" layoutX="650.0" layoutY="196.0" mnemonicParsing="false" text="Answer">
+               <items>
+                  <MenuItem fx:id="ratq9MenuItem1" mnemonicParsing="false" text="Very unstable" />
+                  <MenuItem fx:id="ratq9MenuItem2" mnemonicParsing="false" text="Unstable" />
+                  <MenuItem fx:id="ratq9MenuItem3" mnemonicParsing="false" text="Somewhat stable" />
+                  <MenuItem fx:id="ratq9MenuItem4" mnemonicParsing="false" text="Stable" />
+                  <MenuItem fx:id="ratq9MenuItem5" mnemonicParsing="false" text="Very stable" />
+               </items>
+            </MenuButton>
+            <Text fill="#fceeee" layoutX="592.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When it comes to investing in stock or bond mutual funds (or individual stocks or bonds), I would describe myself as . . ." wrappingWidth="213.90966796875" />
+            <TextField fx:id="q10TextBox" layoutX="597.0" layoutY="309.0" prefHeight="51.0" prefWidth="184.0" />
+            <MenuButton fx:id="q10Menubutton" layoutX="650.0" layoutY="310.0" mnemonicParsing="false" text="Answer">
+               <items>
+                  <MenuItem fx:id="ratq10MenuItem1" mnemonicParsing="false" text="Very inexperienced" />
+                  <MenuItem fx:id="ratq10MenuItem2" mnemonicParsing="false" text="Somewhat inexperienced" />
+                  <MenuItem fx:id="ratq10MenuItem3" mnemonicParsing="false" text="Somewhat experienced" />
+                  <MenuItem fx:id="ratq10MenuItem4" mnemonicParsing="false" text="Experienced" />
+                  <MenuItem fx:id="ratq10MenuItem5" mnemonicParsing="false" text="Very experienced" />
+               </items>
+            </MenuButton>
+            <Text fill="#fcefef" layoutX="597.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When the market goes down, I tend to sell some of my riskier investments and put the money in safer investments." wrappingWidth="203.90966796875" />
+            <TextField fx:id="q11TextBox" layoutX="597.0" layoutY="448.0" prefHeight="51.0" prefWidth="184.0" />
+            <MenuButton fx:id="q11Menubutton" layoutX="653.0" layoutY="448.0" mnemonicParsing="false" text="Answer">
+               <items>
+                  <MenuItem fx:id="ratq11MenuItem1" mnemonicParsing="false" text="I strongly disagree" />
+                  <MenuItem fx:id="ratq11MenuItem2" mnemonicParsing="false" text="I disagree" />
+                  <MenuItem fx:id="ratq11MenuItem3" mnemonicParsing="false" text="I somewhat agree" />
+                  <MenuItem fx:id="ratq11MenuItem4" mnemonicParsing="false" text="I agree" />
+                  <MenuItem fx:id="ratq11MenuItem5" mnemonicParsing="false" text="I strongly agree" />
+               </items>
+            </MenuButton>
+            <Text fill="#ffeeee" layoutX="347.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I enjoy gambling, and losing money does not cause me to be shaken" wrappingWidth="203.90966796875" />
+            <TextField fx:id="q5TextBox" layoutX="344.0" layoutY="198.0" prefHeight="51.0" prefWidth="184.0" />
+            <MenuButton fx:id="q5Menubutton" layoutX="397.0" layoutY="198.0" mnemonicParsing="false" text="Answer">
+               <items>
+                  <MenuItem fx:id="ratq5MenuItem1" mnemonicParsing="false" text="I strongly disagree" />
+                  <MenuItem fx:id="ratq5MenuItem2" mnemonicParsing="false" text="I disagree" />
+                  <MenuItem fx:id="ratq5MenuItem3" mnemonicParsing="false" text="I somewhat agree" />
+                  <MenuItem fx:id="ratq5MenuItem4" mnemonicParsing="false" text="I agree" />
+                  <MenuItem fx:id="ratq5MenuItem5" mnemonicParsing="false" text="I strongly agree" />
+               </items>
+            </MenuButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

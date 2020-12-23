@@ -1,5 +1,8 @@
 package application;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +27,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class RiskAssessmentTestController implements Initializable {
+
+	// private singleton constructor
+	/*private RiskAssessmentTestController() {
+
+	}*/
 
 	boolean isOpen = false;
 
@@ -348,6 +356,8 @@ public class RiskAssessmentTestController implements Initializable {
 
 	public boolean canOpenPortolioBuilder = false;
 
+	public String str = "";
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		SwitchScenes();
@@ -364,7 +374,12 @@ public class RiskAssessmentTestController implements Initializable {
 		Question10Return();
 		Question11Return();
 		Question12Return();
-		AddEmUp();
+		try {
+			AddEmUp();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void SwitchScenes() {
@@ -812,29 +827,41 @@ public class RiskAssessmentTestController implements Initializable {
 	 * 
 	 */
 	@FXML
-	public String AddEmUp() {
+	public String AddEmUp() throws FileNotFoundException {
 
 		int value = (question1Value + question2Value + question3Value + question4Value + question5Value + question6Value
 				+ question7Value + question8Value + question9Value + question10Value + question11Value
 				+ question12Value) / 12;
 
-		String str = "";
 
 		if (value == 1 || value == 2) {
 			recommendedInvestmentTimeline.setText("Monthly");
-			str = "Low";
+			this.str = "Low";
 		} else if (value == 3 || value == 4) {
 			recommendedInvestmentTimeline.setText("Bi-Weekly");
-			str = "Mid";
+			this.str = "Mid";
 		} else if (value == 5) {
 			recommendedInvestmentTimeline.setText("Weekly");
-			str = "High";
+			this.str = "High";
 		}
 
-		riskRating.setText(str);
-		System.out.println(str);
-		return str;
+		riskRating.setText(this.str);
+		System.out.println(this.str);
+		
+		//we are going to pass the info about the score results through a text file
+		File f = new File("RAT Score");
+		PrintWriter PW = new PrintWriter(f.getName());
+		PW.print("");
+		PW.println(this.str);
+		PW.flush();
+		
+		
+		return this.str;
 
+	}
+
+	public String getStr() {
+		return str;
 	}
 
 	/**

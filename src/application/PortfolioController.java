@@ -1,9 +1,10 @@
 package application;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -16,11 +17,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -34,7 +32,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 /**
  * @author stevebaca
@@ -235,21 +232,19 @@ public class PortfolioController implements Initializable {
 	 * This class provides functionality to the GUI takes value from Risk Assessment
 	 * Test Makes it so that you can build your portfolio, visualize data, and get
 	 * the weights for you portfolio
+	 * @throws IOException 
 	 */
 	@SuppressWarnings("unchecked")
-	public void SPY() {
+	public void SPY() throws IOException {
 
-		FXMLLoader load = new FXMLLoader(getClass().getResource("/application/RiskAssessmentTest.fxml"));
-		try {
-			Parent Root = load.load();
-		} catch (IOException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-		RiskAssessmentTestController RATC = load.getController();
-		String thisScore = RATC.AddEmUp();
+		
+		BufferedReader BR = new BufferedReader(new FileReader("RAT Score"));
+		
+		String thisScore = BR.readLine();
 		System.out.println(thisScore);
-
+		
+		//closing resource leak
+		BR.close();
 		// Portfoilo gets built
 
 		// System.out.println(RATC.AddEmUp());

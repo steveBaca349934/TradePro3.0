@@ -1,17 +1,14 @@
 package application;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.AtomicReference;
 
-import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -347,6 +344,10 @@ public class RiskAssessmentTestController implements Initializable {
 
 	String jake = " ";
 
+	public HashMap<String, Integer> questionCount = new HashMap<String, Integer>();
+
+	public boolean canOpenPortolioBuilder = false;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		SwitchScenes();
@@ -379,7 +380,8 @@ public class RiskAssessmentTestController implements Initializable {
 		ratMenuItemAbout.setId("ratMenuItemAbout");
 
 		portfolioBuilderMenuItem.setOnAction((ActionEvent e) -> {
-			if (isOpen == false) {
+			if (isOpen == false && checkIfReadyForPortfolioBuilder(this.questionCount)) {
+				
 				try {
 					isOpen = true;
 
@@ -394,9 +396,7 @@ public class RiskAssessmentTestController implements Initializable {
 				} catch (Exception e1) {
 					// TODO: handle exception
 				}
-			}else {
-				System.out.println("this application is already open !");
-			}
+			} 
 		});
 	}
 
@@ -454,6 +454,11 @@ public class RiskAssessmentTestController implements Initializable {
 
 				this.question1Value = thisQues1.get(menuItem);
 
+				// we are keeping track of how many questions they answer because I don't want
+				// them to access
+				// portfolio builder till they have answered all of the questions
+				this.questionCount.put("question1", 1);
+
 			});
 
 		}
@@ -483,6 +488,7 @@ public class RiskAssessmentTestController implements Initializable {
 				this.question2Value = thisQues1.get(menuItem);
 
 				q2TextBox.setText(thisQues1.get(menuItem).toString());
+				this.questionCount.put("question2", 1);
 
 			});
 
@@ -515,6 +521,7 @@ public class RiskAssessmentTestController implements Initializable {
 				this.question3Value = thisQues1.get(menuItem);
 
 				q3TextBox.setText(thisQues1.get(menuItem).toString());
+				this.questionCount.put("question3", 1);
 
 			});
 
@@ -545,6 +552,7 @@ public class RiskAssessmentTestController implements Initializable {
 				this.question4Value = thisQues1.get(menuItem);
 
 				q4TextBox.setText(thisQues1.get(menuItem).toString());
+				this.questionCount.put("question4", 1);
 
 			});
 
@@ -575,6 +583,7 @@ public class RiskAssessmentTestController implements Initializable {
 				this.question5Value = thisQues1.get(menuItem);
 
 				q5TextBox.setText(thisQues1.get(menuItem).toString());
+				this.questionCount.put("question5", 1);
 
 			});
 
@@ -605,6 +614,7 @@ public class RiskAssessmentTestController implements Initializable {
 				this.question6Value = thisQues1.get(menuItem);
 
 				q6TextBox.setText(thisQues1.get(menuItem).toString());
+				this.questionCount.put("question6", 1);
 
 			});
 
@@ -635,6 +645,7 @@ public class RiskAssessmentTestController implements Initializable {
 				this.question7Value = thisQues1.get(menuItem);
 
 				q7TextBox.setText(thisQues1.get(menuItem).toString());
+				this.questionCount.put("question7", 1);
 
 			});
 
@@ -665,6 +676,7 @@ public class RiskAssessmentTestController implements Initializable {
 				this.question8Value = thisQues1.get(menuItem);
 
 				q8TextBox.setText(thisQues1.get(menuItem).toString());
+				this.questionCount.put("question8", 1);
 
 			});
 
@@ -695,6 +707,7 @@ public class RiskAssessmentTestController implements Initializable {
 				this.question9Value = thisQues1.get(menuItem);
 
 				q9TextBox.setText(thisQues1.get(menuItem).toString());
+				this.questionCount.put("question9", 1);
 
 			});
 
@@ -725,6 +738,7 @@ public class RiskAssessmentTestController implements Initializable {
 				this.question10Value = thisQues1.get(menuItem);
 
 				q10TextBox.setText(thisQues1.get(menuItem).toString());
+				this.questionCount.put("question10", 1);
 
 			});
 
@@ -755,6 +769,7 @@ public class RiskAssessmentTestController implements Initializable {
 				this.question11Value = thisQues1.get(menuItem);
 
 				q11TextBox.setText(thisQues1.get(menuItem).toString());
+				this.questionCount.put("question11", 1);
 
 			});
 
@@ -785,6 +800,7 @@ public class RiskAssessmentTestController implements Initializable {
 				this.question12Value = thisQues1.get(menuItem);
 
 				q12TextBox.setText(thisQues1.get(menuItem).toString());
+				this.questionCount.put("question12", 1);
 
 			});
 
@@ -819,6 +835,36 @@ public class RiskAssessmentTestController implements Initializable {
 
 		return str;
 
+	}
+
+	/**
+	 * @author stevebaca
+	 * @since 12/22
+	 * @param questionCount
+	 * @return
+	 */
+	private boolean checkIfReadyForPortfolioBuilder(HashMap<String, Integer> questionCount) {
+		@SuppressWarnings("unchecked")
+		HashSet<String> checker = new HashSet(
+				Arrays.asList("question1", "question2", "question3", "question4", "question5", "question6", "question7",
+						"question8", "question9", "question10", "question11", "question12"));// using a hashset because
+																								// it is O(1) for
+																								// contains questions
+		int count = 0;
+
+		for (String string : checker) {
+
+			if (questionCount.containsKey(string)) {
+				count++;
+			}
+
+		}
+		
+		if(count != 12) {
+			return false;
+		}
+
+		return true;
 	}
 
 }

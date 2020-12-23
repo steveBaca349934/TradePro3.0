@@ -308,7 +308,10 @@ public class PortfolioController implements Initializable {
 			// futureWeights
 
 			metricOne.setText("" + runtest.getDrawDown());
+			metricOne.setAlignment(Pos.CENTER);
 			metricTwo.setText("" + runtest.getSharpeRatio());
+			metricTwo.setAlignment(Pos.CENTER);
+
 			metricThree.setText("" + runtest.getRiskRating());
 			metricThree.setAlignment(Pos.CENTER);
 

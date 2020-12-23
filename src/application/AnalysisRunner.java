@@ -153,6 +153,7 @@ public class AnalysisRunner {
 	}
 
 	public double getDrawDown() {
+		// rounding this value...wayyyy too big right now
 
 		String s = new StringBuilder(String.valueOf(drawDown)).substring(0, 4).toString();
 

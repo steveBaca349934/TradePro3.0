@@ -26,8 +26,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class RiskAssessmentTestController implements Initializable{
+public class RiskAssessmentTestController implements Initializable {
 
+	boolean isOpen = false;
 
 	@FXML
 	public AnchorPane ratAnchorPane;
@@ -236,7 +237,6 @@ public class RiskAssessmentTestController implements Initializable{
 	@FXML
 	private MenuItem ratq9MenuItem5;
 
-
 	@FXML
 	private MenuItem ratq10MenuItem1;
 
@@ -317,10 +317,9 @@ public class RiskAssessmentTestController implements Initializable{
 
 	@FXML
 	private MenuButton q12Menubutton;
-	
-	@FXML
-    private RadioButton disJauntTest;
 
+	@FXML
+	private RadioButton disJauntTest;
 
 	public int question1Value = 0;
 
@@ -345,9 +344,8 @@ public class RiskAssessmentTestController implements Initializable{
 	public int question11Value;
 
 	public int question12Value;
-	
-	String jake = " ";
 
+	String jake = " ";
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -380,25 +378,25 @@ public class RiskAssessmentTestController implements Initializable{
 		ratMenuItemDelete.setId("ratMenuItemDelete");
 		ratMenuItemAbout.setId("ratMenuItemAbout");
 
-		portfolioBuilderMenuItem.setOnAction((ActionEvent e)->{
+		portfolioBuilderMenuItem.setOnAction((ActionEvent e) -> {
+			if (isOpen == false) {
+				try {
+					isOpen = true;
 
-			try {
-				
-				
+					Parent part = FXMLLoader.load(getClass().getResource("/application/Portfolio.fxml"));
+					Stage stage = new Stage();
+					stage.setResizable(false);
+					Scene scene = new Scene(part);
+					scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+					stage.setScene(scene);
 
-				Parent part = FXMLLoader.load(getClass().getResource("/application/Portfolio.fxml"));
-				Stage stage = new Stage();
-				stage.setResizable(false);
-				Scene scene = new Scene(part);
-				scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
-				stage.setScene(scene);
-
-				stage.show();
+					stage.show();
+				} catch (Exception e1) {
+					// TODO: handle exception
+				}
+			}else {
+				System.out.println("this application is already open !");
 			}
-			catch (Exception e1) {
-				// TODO: handle exception
-			}
-
 		});
 	}
 
@@ -423,480 +421,402 @@ public class RiskAssessmentTestController implements Initializable{
 		q11TextBox.setEditable(false);
 		q12TextBox.setEditable(false);
 
-
 	}
 
 	/**
 	 * 
 	 */
 	public void Question1Return() {
-		
-		
 
-		HashMap<MenuItem, Integer>thisQues1 = new HashMap<MenuItem, Integer>();
+		HashMap<MenuItem, Integer> thisQues1 = new HashMap<MenuItem, Integer>();
 		thisQues1.put(ratq1MenuItem1, 1);
 		thisQues1.put(ratq1MenuItem2, 2);
 		thisQues1.put(ratq1MenuItem3, 3);
 		thisQues1.put(ratq1MenuItem4, 4);
 		thisQues1.put(ratq1MenuItem5, 5);
 
-		ArrayList<MenuItem>thisGuy = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> thisGuy = new ArrayList<MenuItem>();
 		thisGuy.add(ratq1MenuItem1);
 		thisGuy.add(ratq1MenuItem2);
 		thisGuy.add(ratq1MenuItem3);
 		thisGuy.add(ratq1MenuItem4);
 		thisGuy.add(ratq1MenuItem5);
-		
-		
 
-		
-			AtomicInteger thatGuy = new AtomicInteger();
-			
-			
-			
-			for (MenuItem menuItem : thisGuy) {
-				
-		
-				menuItem.setOnAction((ActionEvent e)->{
+		AtomicInteger thatGuy = new AtomicInteger();
+
+		for (MenuItem menuItem : thisGuy) {
+
+			menuItem.setOnAction((ActionEvent e) -> {
 
 				q1TextBox.setText(thisQues1.get(menuItem).toString());
-				
-				
-				
+
 				thatGuy.getAndAdd(thisQues1.get(menuItem));
-				
+
 				this.question1Value = thisQues1.get(menuItem);
 
 			});
-				
-		}	
-			
+
+		}
 
 	}
-	
-
 
 	public void Question2Return() {
 
-		HashMap<MenuItem, Integer>thisQues1 = new HashMap<MenuItem, Integer>();
+		HashMap<MenuItem, Integer> thisQues1 = new HashMap<MenuItem, Integer>();
 		thisQues1.put(ratq2MenuItem1, 1);
 		thisQues1.put(ratq2MenuItem2, 2);
 		thisQues1.put(ratq2MenuItem3, 3);
 		thisQues1.put(ratq2MenuItem4, 4);
 		thisQues1.put(ratq2MenuItem5, 5);
 
-		ArrayList<MenuItem>thisGuy = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> thisGuy = new ArrayList<MenuItem>();
 		thisGuy.add(ratq2MenuItem1);
 		thisGuy.add(ratq2MenuItem2);
 		thisGuy.add(ratq2MenuItem3);
 		thisGuy.add(ratq2MenuItem4);
 		thisGuy.add(ratq2MenuItem5);
 
-
 		for (MenuItem menuItem : thisGuy) {
 
-
-			menuItem.setOnAction((ActionEvent e)->{
-
+			menuItem.setOnAction((ActionEvent e) -> {
 
 				this.question2Value = thisQues1.get(menuItem);
 
-
 				q2TextBox.setText(thisQues1.get(menuItem).toString());
-
 
 			});
 
-		}	
-		
+		}
+
 		System.out.println(jake);
 
-
 	}
-	
+
 	public void Question3Return() {
 
-		HashMap<MenuItem, Integer>thisQues1 = new HashMap<MenuItem, Integer>();
+		HashMap<MenuItem, Integer> thisQues1 = new HashMap<MenuItem, Integer>();
 		thisQues1.put(ratq3MenuItem1, 1);
 		thisQues1.put(ratq3MenuItem2, 2);
 		thisQues1.put(ratq3MenuItem3, 3);
 		thisQues1.put(ratq3MenuItem4, 4);
 		thisQues1.put(ratq3MenuItem5, 5);
 
-		ArrayList<MenuItem>thisGuy = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> thisGuy = new ArrayList<MenuItem>();
 		thisGuy.add(ratq3MenuItem1);
 		thisGuy.add(ratq3MenuItem2);
 		thisGuy.add(ratq3MenuItem3);
 		thisGuy.add(ratq3MenuItem4);
 		thisGuy.add(ratq3MenuItem5);
 
-
 		for (MenuItem menuItem : thisGuy) {
 
-
-			menuItem.setOnAction((ActionEvent e)->{
-
+			menuItem.setOnAction((ActionEvent e) -> {
 
 				this.question3Value = thisQues1.get(menuItem);
 
-
 				q3TextBox.setText(thisQues1.get(menuItem).toString());
-
 
 			});
 
-		}	
+		}
 
 	}
-	
+
 	public void Question4Return() {
 
-		HashMap<MenuItem, Integer>thisQues1 = new HashMap<MenuItem, Integer>();
+		HashMap<MenuItem, Integer> thisQues1 = new HashMap<MenuItem, Integer>();
 		thisQues1.put(ratq4MenuItem1, 1);
 		thisQues1.put(ratq4MenuItem2, 2);
 		thisQues1.put(ratq4MenuItem3, 3);
 		thisQues1.put(ratq4MenuItem4, 4);
 		thisQues1.put(ratq4MenuItem5, 5);
 
-		ArrayList<MenuItem>thisGuy = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> thisGuy = new ArrayList<MenuItem>();
 		thisGuy.add(ratq4MenuItem1);
 		thisGuy.add(ratq4MenuItem2);
 		thisGuy.add(ratq4MenuItem3);
 		thisGuy.add(ratq4MenuItem4);
 		thisGuy.add(ratq4MenuItem5);
 
-
 		for (MenuItem menuItem : thisGuy) {
 
-
-			menuItem.setOnAction((ActionEvent e)->{
-
+			menuItem.setOnAction((ActionEvent e) -> {
 
 				this.question4Value = thisQues1.get(menuItem);
 
-
 				q4TextBox.setText(thisQues1.get(menuItem).toString());
-
 
 			});
 
-		}	
+		}
 
 	}
-	
+
 	public void Question5Return() {
 
-		HashMap<MenuItem, Integer>thisQues1 = new HashMap<MenuItem, Integer>();
+		HashMap<MenuItem, Integer> thisQues1 = new HashMap<MenuItem, Integer>();
 		thisQues1.put(ratq5MenuItem1, 1);
 		thisQues1.put(ratq5MenuItem2, 2);
 		thisQues1.put(ratq5MenuItem3, 3);
 		thisQues1.put(ratq5MenuItem4, 4);
 		thisQues1.put(ratq5MenuItem5, 5);
 
-		ArrayList<MenuItem>thisGuy = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> thisGuy = new ArrayList<MenuItem>();
 		thisGuy.add(ratq5MenuItem1);
 		thisGuy.add(ratq5MenuItem2);
 		thisGuy.add(ratq5MenuItem3);
 		thisGuy.add(ratq5MenuItem4);
 		thisGuy.add(ratq5MenuItem5);
 
-
 		for (MenuItem menuItem : thisGuy) {
 
-
-			menuItem.setOnAction((ActionEvent e)->{
-
+			menuItem.setOnAction((ActionEvent e) -> {
 
 				this.question5Value = thisQues1.get(menuItem);
 
-
 				q5TextBox.setText(thisQues1.get(menuItem).toString());
-
 
 			});
 
-		}	
+		}
 
 	}
-	
+
 	public void Question6Return() {
 
-		HashMap<MenuItem, Integer>thisQues1 = new HashMap<MenuItem, Integer>();
+		HashMap<MenuItem, Integer> thisQues1 = new HashMap<MenuItem, Integer>();
 		thisQues1.put(ratq6MenuItem1, 1);
 		thisQues1.put(ratq6MenuItem2, 2);
 		thisQues1.put(ratq6MenuItem3, 3);
 		thisQues1.put(ratq6MenuItem4, 4);
 		thisQues1.put(ratq6MenuItem5, 5);
 
-		ArrayList<MenuItem>thisGuy = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> thisGuy = new ArrayList<MenuItem>();
 		thisGuy.add(ratq6MenuItem1);
 		thisGuy.add(ratq6MenuItem2);
 		thisGuy.add(ratq6MenuItem3);
 		thisGuy.add(ratq6MenuItem4);
 		thisGuy.add(ratq6MenuItem5);
 
-
 		for (MenuItem menuItem : thisGuy) {
 
-
-			menuItem.setOnAction((ActionEvent e)->{
-
+			menuItem.setOnAction((ActionEvent e) -> {
 
 				this.question6Value = thisQues1.get(menuItem);
 
-
 				q6TextBox.setText(thisQues1.get(menuItem).toString());
-
 
 			});
 
-		}	
+		}
 
 	}
-	
+
 	public void Question7Return() {
 
-		HashMap<MenuItem, Integer>thisQues1 = new HashMap<MenuItem, Integer>();
+		HashMap<MenuItem, Integer> thisQues1 = new HashMap<MenuItem, Integer>();
 		thisQues1.put(ratq7MenuItem1, 1);
 		thisQues1.put(ratq7MenuItem2, 2);
 		thisQues1.put(ratq7MenuItem3, 3);
 		thisQues1.put(ratq7MenuItem4, 4);
 		thisQues1.put(ratq7MenuItem5, 5);
 
-		ArrayList<MenuItem>thisGuy = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> thisGuy = new ArrayList<MenuItem>();
 		thisGuy.add(ratq7MenuItem1);
 		thisGuy.add(ratq7MenuItem2);
 		thisGuy.add(ratq7MenuItem3);
 		thisGuy.add(ratq7MenuItem4);
 		thisGuy.add(ratq7MenuItem5);
 
-
 		for (MenuItem menuItem : thisGuy) {
 
-
-			menuItem.setOnAction((ActionEvent e)->{
-
+			menuItem.setOnAction((ActionEvent e) -> {
 
 				this.question7Value = thisQues1.get(menuItem);
 
-
 				q7TextBox.setText(thisQues1.get(menuItem).toString());
-
 
 			});
 
-		}	
+		}
 
 	}
-	
+
 	public void Question8Return() {
 
-		HashMap<MenuItem, Integer>thisQues1 = new HashMap<MenuItem, Integer>();
+		HashMap<MenuItem, Integer> thisQues1 = new HashMap<MenuItem, Integer>();
 		thisQues1.put(ratq8MenuItem1, 1);
 		thisQues1.put(ratq8MenuItem2, 2);
 		thisQues1.put(ratq8MenuItem3, 3);
 		thisQues1.put(ratq8MenuItem4, 4);
 		thisQues1.put(ratq8MenuItem5, 5);
 
-		ArrayList<MenuItem>thisGuy = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> thisGuy = new ArrayList<MenuItem>();
 		thisGuy.add(ratq8MenuItem1);
 		thisGuy.add(ratq8MenuItem2);
 		thisGuy.add(ratq8MenuItem3);
 		thisGuy.add(ratq8MenuItem4);
 		thisGuy.add(ratq8MenuItem5);
 
-
 		for (MenuItem menuItem : thisGuy) {
 
-
-			menuItem.setOnAction((ActionEvent e)->{
-
+			menuItem.setOnAction((ActionEvent e) -> {
 
 				this.question8Value = thisQues1.get(menuItem);
 
-
 				q8TextBox.setText(thisQues1.get(menuItem).toString());
-
 
 			});
 
-		}	
+		}
 
 	}
-	
+
 	public void Question9Return() {
 
-		HashMap<MenuItem, Integer>thisQues1 = new HashMap<MenuItem, Integer>();
+		HashMap<MenuItem, Integer> thisQues1 = new HashMap<MenuItem, Integer>();
 		thisQues1.put(ratq9MenuItem1, 1);
 		thisQues1.put(ratq9MenuItem2, 2);
 		thisQues1.put(ratq9MenuItem3, 3);
 		thisQues1.put(ratq9MenuItem4, 4);
 		thisQues1.put(ratq9MenuItem5, 5);
 
-		ArrayList<MenuItem>thisGuy = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> thisGuy = new ArrayList<MenuItem>();
 		thisGuy.add(ratq9MenuItem1);
 		thisGuy.add(ratq9MenuItem2);
 		thisGuy.add(ratq9MenuItem3);
 		thisGuy.add(ratq9MenuItem4);
 		thisGuy.add(ratq9MenuItem5);
 
-
 		for (MenuItem menuItem : thisGuy) {
 
-
-			menuItem.setOnAction((ActionEvent e)->{
-
+			menuItem.setOnAction((ActionEvent e) -> {
 
 				this.question9Value = thisQues1.get(menuItem);
 
-
 				q9TextBox.setText(thisQues1.get(menuItem).toString());
-
 
 			});
 
-		}	
+		}
 
 	}
-	
+
 	public void Question10Return() {
 
-		HashMap<MenuItem, Integer>thisQues1 = new HashMap<MenuItem, Integer>();
+		HashMap<MenuItem, Integer> thisQues1 = new HashMap<MenuItem, Integer>();
 		thisQues1.put(ratq10MenuItem1, 1);
 		thisQues1.put(ratq10MenuItem2, 2);
 		thisQues1.put(ratq10MenuItem3, 3);
 		thisQues1.put(ratq10MenuItem4, 4);
 		thisQues1.put(ratq10MenuItem5, 5);
 
-		ArrayList<MenuItem>thisGuy = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> thisGuy = new ArrayList<MenuItem>();
 		thisGuy.add(ratq10MenuItem1);
 		thisGuy.add(ratq10MenuItem2);
 		thisGuy.add(ratq10MenuItem3);
 		thisGuy.add(ratq10MenuItem4);
 		thisGuy.add(ratq10MenuItem5);
 
-
 		for (MenuItem menuItem : thisGuy) {
 
+			menuItem.setOnAction((ActionEvent e) -> {
 
-			menuItem.setOnAction((ActionEvent e)->{
-
-
-				
 				this.question10Value = thisQues1.get(menuItem);
 
 				q10TextBox.setText(thisQues1.get(menuItem).toString());
 
 			});
-			
-		}	
-		
-		
+
+		}
 
 	}
-	
+
 	public void Question11Return() {
 
-		HashMap<MenuItem, Integer>thisQues1 = new HashMap<MenuItem, Integer>();
+		HashMap<MenuItem, Integer> thisQues1 = new HashMap<MenuItem, Integer>();
 		thisQues1.put(ratq11MenuItem1, 1);
 		thisQues1.put(ratq11MenuItem2, 2);
 		thisQues1.put(ratq11MenuItem3, 3);
 		thisQues1.put(ratq11MenuItem4, 4);
 		thisQues1.put(ratq11MenuItem5, 5);
 
-		ArrayList<MenuItem>thisGuy = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> thisGuy = new ArrayList<MenuItem>();
 		thisGuy.add(ratq11MenuItem1);
 		thisGuy.add(ratq11MenuItem2);
 		thisGuy.add(ratq11MenuItem3);
 		thisGuy.add(ratq11MenuItem4);
 		thisGuy.add(ratq11MenuItem5);
 
-
 		for (MenuItem menuItem : thisGuy) {
 
-
-			menuItem.setOnAction((ActionEvent e)->{
-
+			menuItem.setOnAction((ActionEvent e) -> {
 
 				this.question11Value = thisQues1.get(menuItem);
 
-
 				q11TextBox.setText(thisQues1.get(menuItem).toString());
-
 
 			});
 
-		}	
+		}
 
 	}
-	
+
 	public void Question12Return() {
 
-		HashMap<MenuItem, Integer>thisQues1 = new HashMap<MenuItem, Integer>();
+		HashMap<MenuItem, Integer> thisQues1 = new HashMap<MenuItem, Integer>();
 		thisQues1.put(ratq12MenuItem1, 1);
 		thisQues1.put(ratq12MenuItem2, 2);
 		thisQues1.put(ratq12MenuItem3, 3);
 		thisQues1.put(ratq12MenuItem4, 4);
 		thisQues1.put(ratq12MenuItem5, 5);
 
-		ArrayList<MenuItem>thisGuy = new ArrayList<MenuItem>();
+		ArrayList<MenuItem> thisGuy = new ArrayList<MenuItem>();
 		thisGuy.add(ratq12MenuItem1);
 		thisGuy.add(ratq12MenuItem2);
 		thisGuy.add(ratq12MenuItem3);
 		thisGuy.add(ratq12MenuItem4);
 		thisGuy.add(ratq12MenuItem5);
 
-
 		for (MenuItem menuItem : thisGuy) {
 
-
-			menuItem.setOnAction((ActionEvent e)->{
-
+			menuItem.setOnAction((ActionEvent e) -> {
 
 				this.question12Value = thisQues1.get(menuItem);
 
-
 				q12TextBox.setText(thisQues1.get(menuItem).toString());
-
 
 			});
 
-		}	
+		}
 
 	}
-	
+
 	/*
 	 * 
 	 */
 	@FXML
 	public String AddEmUp() {
-		
-		
-		
-		int value = (question1Value + question2Value + question3Value
-			+question4Value+question5Value+question6Value+question7Value+question8Value
-			+question9Value+question10Value+question11Value+question12Value)/12;
-		
-	
+
+		int value = (question1Value + question2Value + question3Value + question4Value + question5Value + question6Value
+				+ question7Value + question8Value + question9Value + question10Value + question11Value
+				+ question12Value) / 12;
+
 		String str = "";
-		
-		
-		
-		if(value ==1 || value== 2) {
+
+		if (value == 1 || value == 2) {
 			recommendedInvestmentTimeline.setText("Monthly");
 			str = "Low";
-		}else
-		if(value ==3||value==4) {
+		} else if (value == 3 || value == 4) {
 			recommendedInvestmentTimeline.setText("Bi-Weekly");
 			str = "Mid";
-		}else
-		if(value ==5) {
+		} else if (value == 5) {
 			recommendedInvestmentTimeline.setText("Weekly");
 			str = "High";
 		}
-		
+
 		riskRating.setText(str);
-		
+
 		return str;
 
 	}

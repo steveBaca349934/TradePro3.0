@@ -381,7 +381,7 @@ public class RiskAssessmentTestController implements Initializable {
 
 		portfolioBuilderMenuItem.setOnAction((ActionEvent e) -> {
 			if (isOpen == false && checkIfReadyForPortfolioBuilder(this.questionCount)) {
-				
+
 				try {
 					isOpen = true;
 
@@ -396,7 +396,7 @@ public class RiskAssessmentTestController implements Initializable {
 				} catch (Exception e1) {
 					// TODO: handle exception
 				}
-			} 
+			}
 		});
 	}
 
@@ -832,7 +832,7 @@ public class RiskAssessmentTestController implements Initializable {
 		}
 
 		riskRating.setText(str);
-
+		System.out.println(str);
 		return str;
 
 	}
@@ -841,7 +841,7 @@ public class RiskAssessmentTestController implements Initializable {
 	 * @author stevebaca
 	 * @since 12/22
 	 * @param questionCount
-	 * @return
+	 * @return true if every question has been answer else false
 	 */
 	private boolean checkIfReadyForPortfolioBuilder(HashMap<String, Integer> questionCount) {
 		@SuppressWarnings("unchecked")
@@ -859,8 +859,8 @@ public class RiskAssessmentTestController implements Initializable {
 			}
 
 		}
-		
-		if(count != 12) {
+
+		if (count != 12) {
 			return false;
 		}
 

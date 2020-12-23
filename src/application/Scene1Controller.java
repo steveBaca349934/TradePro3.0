@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,8 +17,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 
-public class Scene1Controller implements Initializable{
+public class Scene1Controller implements Initializable {
 
+	boolean isOpen = false;
 
 	@FXML
 	private AnchorPane introScene;
@@ -28,8 +30,9 @@ public class Scene1Controller implements Initializable{
 	@FXML
 	private Button yourStockInfo;
 
-	/*@FXML
-	private Button yourPortfolio;*/
+	/*
+	 * @FXML private Button yourPortfolio;
+	 */
 
 	@FXML
 	private TextField sandp500Shower;
@@ -45,7 +48,6 @@ public class Scene1Controller implements Initializable{
 
 		Button1Listener();
 
-		
 		try {
 			setDJIAandSandPText();
 		} catch (IOException e) {
@@ -54,64 +56,60 @@ public class Scene1Controller implements Initializable{
 		}
 	}
 
-
 	/**
 	 * Adding functionality to the buttons on the front page, launches RAT
 	 */
 	public void Button1Listener() {
 
+		yourStockInfo.setOnAction((ActionEvent e) -> {
 
-		yourStockInfo.setOnAction((ActionEvent e)->{
-
-			try {
-
-				Parent part = FXMLLoader.load(getClass().getResource("RiskAssessmentTest.fxml"));
-				Stage stage = new Stage();
-				stage.setResizable(false);
-				Scene scene = new Scene(part);
-				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-				stage.setScene(scene);
-				stage.show();
+			if (isOpen == false) {
+				try {
+					isOpen = true;
+					Parent part = FXMLLoader.load(getClass().getResource("RiskAssessmentTest.fxml"));
+					Stage stage = new Stage();
+					stage.setResizable(false);
+					Scene scene = new Scene(part);
+					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+					stage.setScene(scene);
+					stage.show();
+				} catch (Exception e1) {
+					// TODO: handle exception
+				}
+			}else {
+				System.out.println("this application is already open !");
 			}
-			catch (Exception e1) {
-				// TODO: handle exception
-			}
-
 		});
 
-
-
 	}
-	
+
 	/**
 	 * Launches portfolio builder
 	 */
-	/*public void Button2Listener() {
+	/*
+	 * public void Button2Listener() {
+	 * 
+	 * yourPortfolio.setOnAction((ActionEvent e)->{
+	 * 
+	 * try {
+	 * 
+	 * Parent part =
+	 * FXMLLoader.load(getClass().getResource("/application/Portfolio.fxml")); Stage
+	 * stage = new Stage(); stage.setResizable(false); Scene scene = new
+	 * Scene(part); scene.getStylesheets().add(getClass().getResource(
+	 * "/application/application.css").toExternalForm()); stage.setScene(scene);
+	 * stage.show(); } catch (Exception e1) { // TODO: handle exception }
+	 * 
+	 * });
+	 * 
+	 * 
+	 * 
+	 * }
+	 */
 
-		yourPortfolio.setOnAction((ActionEvent e)->{
-
-			try {
-
-				Parent part = FXMLLoader.load(getClass().getResource("/application/Portfolio.fxml"));
-				Stage stage = new Stage();
-				stage.setResizable(false);
-				Scene scene = new Scene(part);
-				scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
-				stage.setScene(scene);
-				stage.show();
-			}
-			catch (Exception e1) {
-				// TODO: handle exception
-			}
-
-		});
-
-
-
-	}*/
-	
 	/**
-	 * sets the SandP500 and DJIA values 
+	 * sets the SandP500 and DJIA values
+	 * 
 	 * @throws IOException
 	 */
 	public void setDJIAandSandPText() throws IOException {
@@ -124,6 +122,5 @@ public class Scene1Controller implements Initializable{
 		sandp500Shower.centerShapeProperty();
 
 	}
-
 
 }

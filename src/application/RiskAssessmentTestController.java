@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -382,6 +383,8 @@ public class RiskAssessmentTestController implements Initializable{
 		portfolioBuilderMenuItem.setOnAction((ActionEvent e)->{
 
 			try {
+				
+				
 
 				Parent part = FXMLLoader.load(getClass().getResource("/application/Portfolio.fxml"));
 				Stage stage = new Stage();

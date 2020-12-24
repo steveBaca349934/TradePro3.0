@@ -1,6 +1,7 @@
 package application;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +39,7 @@ import javafx.scene.text.Text;
  *
  */
 public class PortfolioController implements Initializable {
+	
 
 	boolean isOpen = false;
 
@@ -229,28 +231,39 @@ public class PortfolioController implements Initializable {
 	}
 
 	/**
-	 * This class provides functionality to the GUI takes value from Risk Assessment
-	 * Test Makes it so that you can build your portfolio, visualize data, and get
-	 * the weights for you portfolio
-	 * @throws IOException 
+	 * @author stevebaca
+	 * @since 12/23
+	 * @return
+	 * @throws IOException
 	 */
-	@SuppressWarnings("unchecked")
-	public void SPY() throws IOException {
-
+	private AnalysisRunner provideAR() throws IOException {
 		
 		BufferedReader BR = new BufferedReader(new FileReader("RAT Score"));
 		
 		String thisScore = BR.readLine();
 		System.out.println(thisScore);
-		
-		//closing resource leak
-		BR.close();
-		// Portfoilo gets built
+
+		// closing resource leak
 
 		// System.out.println(RATC.AddEmUp());
 
 		AnalysisRunner runtest = new AnalysisRunner(thisScore);
 
+		return runtest;
+	}
+
+	/**
+	 * This class provides functionality to the GUI takes value from Risk Assessment
+	 * Test Makes it so that you can build your portfolio, visualize data, and get
+	 * the weights for you portfolio
+	 * 
+	 * @throws IOException
+	 */
+	@SuppressWarnings("unchecked")
+	public void SPY() throws IOException {
+
+		AnalysisRunner runtest = provideAR();
+		//you have to feed this "symbols" thing to the model or else it will throw a null pointer exception
 		try {
 			runtest.AnalysisCompute(symbols);
 		} catch (Exception e1) {
@@ -279,6 +292,28 @@ public class PortfolioController implements Initializable {
 
 		});
 
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	
+	public void visualizeData() throws Exception {
+
+		AnalysisRunner runtest = provideAR();
+		
+		//you have to feed this "symbols" thing to the model or else it will throw a null pointer exception
+		try {
+			runtest.AnalysisCompute(symbols);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		System.out.println("test");
+		
+
 		visualize.setOnAction((ActionEvent e) -> {
 			/*
 			 * Chart.getData().clear(); XYChart.Series<String, Double>test = new
@@ -287,21 +322,20 @@ public class PortfolioController implements Initializable {
 			 * Double>("Feb 19", 18.3)); test.getData().add(new XYChart.Data<String,
 			 * Double>("March 10th", 15.1)); test.setName("ok"); Chart.getData().add(test);
 			 */
-			System.out.println("test");
+
+			// futureWeights
 			double[][] histReturn = runtest.getHistReturn();
 			String[] investmentDate = null;
-			//Have to try catch this unfortunately because it will throw errors every now and then
-			//believe this is due to some issue in the yahoo finance API but will figure this out later
 			try {
 				investmentDate = runtest.getInvestmentDate();
 			} catch (Exception e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
+			
+
 			String[] risks = runtest.getRisks();
-
-			// futureWeights
-
+			
 			metricOne.setText("" + runtest.getDrawDown());
 			metricOne.setAlignment(Pos.CENTER);
 			metricTwo.setText("" + runtest.getSharpeRatio());

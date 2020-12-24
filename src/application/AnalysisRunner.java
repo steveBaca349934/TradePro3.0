@@ -164,46 +164,6 @@ public class AnalysisRunner {
 
 	// String[] symbols_user = new String[] {"INTC", "BABA", "TSLA"};
 
-	public static void main(String[] args) throws Exception {
-
-		// Here is a test case of user picking three stocks and assessment test being
-		// high
-		List<String> symbols = new ArrayList<String>();
-
-		// symbols.add("INTC");
-
-		// symbols.add("BABA");
-
-		// symbols.add("TSLA");
-
-		symbols.add("SPY");
-
-		symbols.add("QQQ");
-
-		symbols.add("GLD");
-
-		String Score = "Mid";
-
-		// Portfoilo gets built
-
-		AnalysisRunner runtest = new AnalysisRunner(Score);
-		runtest.AnalysisCompute(symbols);
-		runtest.getRiskRating();
-		System.out.println(Arrays.toString(runtest.getInvestmentDate()));
-
-		// it will print: histReturn0: [-0.09850874504512777.....]
-		// it will print: histReturn1: [0.001997609315795401.....]
-		// it will print: weights: [-0.14032848132841422, 1.2426438972162417,
-		// -0.10231541588782739]
-		// it will print:risks: [high risk, mid risk, high risk]
-
-		// to get above results, one can type
-
-		// runtest.getHistReturn();
-		// runtest.getRisks();
-		// runtest.getWeights();
-		// runtest.getInvestmentDate()
-
-	}
+	
 
 }

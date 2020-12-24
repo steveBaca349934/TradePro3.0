@@ -75,7 +75,7 @@
                   <TextField fx:id="metricOne" layoutX="431.0" layoutY="68.0" prefHeight="51.0" prefWidth="160.0" />
                   <TextField fx:id="metricTwo" layoutX="632.0" layoutY="68.0" prefHeight="51.0" prefWidth="160.0" />
                   <TextField fx:id="metricThree" layoutX="837.0" layoutY="66.0" prefHeight="51.0" prefWidth="160.0" />
-                  <Button fx:id="visualize" layoutX="116.0" layoutY="42.0" mnemonicParsing="false" onAction="#SPY" prefHeight="27.0" prefWidth="71.0" text="Visualize" />
+                  <Button fx:id="visualize" layoutX="116.0" layoutY="42.0" mnemonicParsing="false" onAction="#visualizeData" prefHeight="27.0" prefWidth="71.0" text="Visualize" />
                   <Text fill="#eee2e2" layoutX="116.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plot Data" textAlignment="CENTER" wrappingWidth="71.22900390625" />
                   <Text fill="#eee2e2" layoutX="475.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Largest Drawdown" textAlignment="CENTER" wrappingWidth="71.22900390625" />
                   <Text fill="#eee2e2" layoutX="676.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sharpe Ratio" textAlignment="CENTER" wrappingWidth="71.22900390625" />
@@ -84,7 +84,7 @@
                   <VBox fx:id="portfolioTracker" layoutX="190.0" layoutY="17.0" prefHeight="136.0" prefWidth="136.0" />
                   <Text fill="#fceaea" layoutX="326.0" layoutY="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Future Weights" />
                   <VBox fx:id="futureWeights" layoutX="325.0" layoutY="17.0" prefHeight="136.0" prefWidth="85.0" />
-                  <Button fx:id="anothaOneWeights" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="71.0" text="Weights" />
+                  <Button fx:id="anothaOneWeights" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" onAction="#SPY" prefHeight="27.0" prefWidth="71.0" text="Weights" />
                   <Text fill="#eee2e2" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Future Weights" textAlignment="CENTER" wrappingWidth="71.22900390625" />
                </children>
             </Pane>

@@ -140,8 +140,9 @@ public class PortfolioController implements Initializable {
 		CSSButtonIdentifier();
 		// ThisRiskAssesmentMenuItemListener();
 		ButtonPopulator();
-		
-		//putting these action events in here so that there's no need to click the buttons twice
+
+		// putting these action events in here so that there's no need to click the
+		// buttons twice
 		visualize.setOnAction(e -> {
 			try {
 				visualizeData();
@@ -150,8 +151,7 @@ public class PortfolioController implements Initializable {
 				e1.printStackTrace();
 			}
 		});
-		
-		
+
 		anothaOneWeights.setOnAction(e -> {
 			try {
 				SPY();
@@ -234,15 +234,21 @@ public class PortfolioController implements Initializable {
 			thisVBox.getChildren().add(tempButton);
 
 			tempButton.setOnAction((ActionEvent e) -> {
+				// this symbols is something that the backend is using to calculate the best
+				// portfolio
 				symbols.add(tempButton.getText());
-				ok.add(tempButton.getText());
+				if (!ok.contains(string)) {
+					ok.add(tempButton.getText());
 
-				Button temp = new Button(string);
-				temp.setId("portfolioTracker");
-				temp.setPrefWidth(136);
-				temp.setPrefHeight(2);
-				portfolioTracker.getChildren().add(temp);
+					Button temp = new Button(string);
+					temp.setId("portfolioTracker");
+					temp.setPrefWidth(136);
+					temp.setPrefHeight(2);
 
+					portfolioTracker.getChildren().add(temp);
+				} else {
+					return;
+				}
 			});
 
 		}
@@ -297,17 +303,18 @@ public class PortfolioController implements Initializable {
 
 		for (int i = 0; i < Weights.length; i++) {
 			for (int j = 0; j < Weights[i].length; j++) {
-				
-				//rounding by using String Builder since there's no built in easy way to round in java
+
+				// rounding by using String Builder since there's no built in easy way to round
+				// in java
 				String s = new StringBuilder(String.valueOf(Weights[i][j])).substring(0, 4).toString();
-				
+
 				disJoint.add(Double.valueOf(s));
 			}
 		}
 
-		
-		//so right now this is taking the response that anytime the button is clicked it is returning the weights
-		//I don't like this and want to fix it 
+		// so right now this is taking the response that anytime the button is clicked
+		// it is returning the weights
+		// I don't like this and want to fix it
 		for (Double double1 : disJoint) {
 			Button tempGuy = new Button(double1.toString());
 			tempGuy.setPrefWidth(85);
@@ -358,8 +365,7 @@ public class PortfolioController implements Initializable {
 
 		String[] risks = runtest.getRisks();
 
-		
-		//setting the three metrics
+		// setting the three metrics
 		metricOne.setText("" + runtest.getDrawDown());
 		metricOne.setAlignment(Pos.CENTER);
 		metricTwo.setText("" + runtest.getSharpeRatio());

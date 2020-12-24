@@ -141,6 +141,14 @@ public class PortfolioController implements Initializable {
 		CSSButtonIdentifier();
 		// ThisRiskAssesmentMenuItemListener();
 		ButtonPopulator();
+		visualize.setOnAction(e->{
+			try {
+				visualizeData();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 
 	}
 
@@ -314,7 +322,6 @@ public class PortfolioController implements Initializable {
 		System.out.println("test");
 		
 
-		visualize.setOnAction((ActionEvent e) -> {
 			/*
 			 * Chart.getData().clear(); XYChart.Series<String, Double>test = new
 			 * XYChart.Series<String, Double>(); test.getData().add(new XYChart.Data<String,
@@ -412,7 +419,7 @@ public class PortfolioController implements Initializable {
 			anotherOne.getData().addAll(data);
 			Chart.getData().addAll(anotherOne, anotherOne2);
 
-		});
+		
 	}
 
 	/**

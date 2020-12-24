@@ -74,6 +74,8 @@ public class Scene1Controller implements Initializable {
 					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 					stage.setScene(scene);
 					stage.show();
+					
+					//if you close the window out, you will be able to reopen it
 					stage.setOnCloseRequest((WindowEvent Event) -> {
 						isOpen = false;
 						

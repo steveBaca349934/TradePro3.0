@@ -26,6 +26,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class RiskAssessmentTestController implements Initializable {
 
@@ -412,8 +413,15 @@ public class RiskAssessmentTestController implements Initializable {
 					Scene scene = new Scene(part);
 					scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 					stage.setScene(scene);
-
 					stage.show();
+					
+					//if you close the window out, you will be able to reopen it
+					stage.setOnCloseRequest((WindowEvent Event) -> {
+						isOpen = false;
+						
+					});
+					
+					
 				} catch (Exception e1) {
 					// TODO: handle exception
 				}

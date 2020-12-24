@@ -39,7 +39,6 @@ import javafx.scene.text.Text;
  *
  */
 public class PortfolioController implements Initializable {
-	
 
 	boolean isOpen = false;
 
@@ -141,10 +140,22 @@ public class PortfolioController implements Initializable {
 		CSSButtonIdentifier();
 		// ThisRiskAssesmentMenuItemListener();
 		ButtonPopulator();
-		visualize.setOnAction(e->{
+		
+		//putting these action events in here so that there's no need to click the buttons twice
+		visualize.setOnAction(e -> {
 			try {
 				visualizeData();
 			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
+		
+		anothaOneWeights.setOnAction(e -> {
+			try {
+				SPY();
+			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
@@ -245,9 +256,9 @@ public class PortfolioController implements Initializable {
 	 * @throws IOException
 	 */
 	private AnalysisRunner provideAR() throws IOException {
-		
+
 		BufferedReader BR = new BufferedReader(new FileReader("RAT Score"));
-		
+
 		String thisScore = BR.readLine();
 		System.out.println(thisScore);
 
@@ -271,7 +282,8 @@ public class PortfolioController implements Initializable {
 	public void SPY() throws IOException {
 
 		AnalysisRunner runtest = provideAR();
-		//you have to feed this "symbols" thing to the model or else it will throw a null pointer exception
+		// you have to feed this "symbols" thing to the model or else it will throw a
+		// null pointer exception
 		try {
 			runtest.AnalysisCompute(symbols);
 		} catch (Exception e1) {
@@ -279,26 +291,23 @@ public class PortfolioController implements Initializable {
 			e1.printStackTrace();
 		}
 
-		anothaOneWeights.setOnAction((ActionEvent e) -> {
-			double[][] Weights = runtest.getWeights();
+		double[][] Weights = runtest.getWeights();
 
-			ArrayList<Double> disJoint = new ArrayList<Double>();
+		ArrayList<Double> disJoint = new ArrayList<Double>();
 
-			for (int i = 0; i < Weights.length; i++) {
-				for (int j = 0; j < Weights[i].length; j++) {
-					disJoint.add(Weights[i][j]);
-				}
+		for (int i = 0; i < Weights.length; i++) {
+			for (int j = 0; j < Weights[i].length; j++) {
+				disJoint.add(Weights[i][j]);
 			}
+		}
 
-			for (Double double1 : disJoint) {
-				Button tempGuy = new Button(double1.toString());
-				tempGuy.setPrefWidth(85);
-				tempGuy.setPrefHeight(2);
-				tempGuy.setId("futureWeights");
-				futureWeights.getChildren().add(tempGuy);
-			}
-
-		});
+		for (Double double1 : disJoint) {
+			Button tempGuy = new Button(double1.toString());
+			tempGuy.setPrefWidth(85);
+			tempGuy.setPrefHeight(2);
+			tempGuy.setId("futureWeights");
+			futureWeights.getChildren().add(tempGuy);
+		}
 
 	}
 
@@ -306,12 +315,13 @@ public class PortfolioController implements Initializable {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-	
+
 	public void visualizeData() throws Exception {
 
 		AnalysisRunner runtest = provideAR();
-		
-		//you have to feed this "symbols" thing to the model or else it will throw a null pointer exception
+
+		// you have to feed this "symbols" thing to the model or else it will throw a
+		// null pointer exception
 		try {
 			runtest.AnalysisCompute(symbols);
 		} catch (Exception e1) {
@@ -320,106 +330,103 @@ public class PortfolioController implements Initializable {
 		}
 
 		System.out.println("test");
-		
 
-			/*
-			 * Chart.getData().clear(); XYChart.Series<String, Double>test = new
-			 * XYChart.Series<String, Double>(); test.getData().add(new XYChart.Data<String,
-			 * Double>("Feb 14", 10.5)); test.getData().add(new XYChart.Data<String,
-			 * Double>("Feb 19", 18.3)); test.getData().add(new XYChart.Data<String,
-			 * Double>("March 10th", 15.1)); test.setName("ok"); Chart.getData().add(test);
-			 */
+		/*
+		 * Chart.getData().clear(); XYChart.Series<String, Double>test = new
+		 * XYChart.Series<String, Double>(); test.getData().add(new XYChart.Data<String,
+		 * Double>("Feb 14", 10.5)); test.getData().add(new XYChart.Data<String,
+		 * Double>("Feb 19", 18.3)); test.getData().add(new XYChart.Data<String,
+		 * Double>("March 10th", 15.1)); test.setName("ok"); Chart.getData().add(test);
+		 */
 
-			// futureWeights
-			double[][] histReturn = runtest.getHistReturn();
-			String[] investmentDate = null;
-			try {
-				investmentDate = runtest.getInvestmentDate();
-			} catch (Exception e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
+		// futureWeights
+		double[][] histReturn = runtest.getHistReturn();
+		String[] investmentDate = null;
+		try {
+			investmentDate = runtest.getInvestmentDate();
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+
+		String[] risks = runtest.getRisks();
+
+		metricOne.setText("" + runtest.getDrawDown());
+		metricOne.setAlignment(Pos.CENTER);
+		metricTwo.setText("" + runtest.getSharpeRatio());
+		metricTwo.setAlignment(Pos.CENTER);
+
+		metricThree.setText("" + runtest.getRiskRating());
+		metricThree.setAlignment(Pos.CENTER);
+
+		ArrayList<Double> holder = new ArrayList<Double>();
+
+		for (int i = 0; i < histReturn.length; i++) {
+			for (int j = 0; j < histReturn[i].length; j++) {
+				holder.add(histReturn[i][j]);
 			}
-			
+		}
 
-			String[] risks = runtest.getRisks();
-			
-			metricOne.setText("" + runtest.getDrawDown());
-			metricOne.setAlignment(Pos.CENTER);
-			metricTwo.setText("" + runtest.getSharpeRatio());
-			metricTwo.setAlignment(Pos.CENTER);
+		ArrayList<String> timeHolder = new ArrayList<String>();
+		////////////////////////////////////
+		////////////////////////////////////
+		////////////////////////////////////
+		for (String string : investmentDate) {
+			timeHolder.add(string);
+		}
+		////////////////////////////////////
+		////////////////////////////////////
+		////////////////////////////////////
+		////////////////////////////////////
 
-			metricThree.setText("" + runtest.getRiskRating());
-			metricThree.setAlignment(Pos.CENTER);
+		ArrayList<Double> firstHalfHolder = new ArrayList<Double>();
 
-			ArrayList<Double> holder = new ArrayList<Double>();
+		for (int i = 0; i < holder.size() / 2; i++) {
+			firstHalfHolder.add(holder.get(i));
+		}
 
-			for (int i = 0; i < histReturn.length; i++) {
-				for (int j = 0; j < histReturn[i].length; j++) {
-					holder.add(histReturn[i][j]);
-				}
-			}
+		ArrayList<Double> secondHalfHolder = new ArrayList<Double>();
 
-			ArrayList<String> timeHolder = new ArrayList<String>();
-			////////////////////////////////////
-			////////////////////////////////////
-			////////////////////////////////////
-			for (String string : investmentDate) {
-				timeHolder.add(string);
-			}
-			////////////////////////////////////
-			////////////////////////////////////
-			////////////////////////////////////
-			////////////////////////////////////
+		for (int i = holder.size() / 2; i < holder.size(); i++) {
+			secondHalfHolder.add(holder.get(i));
+		}
 
-			ArrayList<Double> firstHalfHolder = new ArrayList<Double>();
+		for (int i = 0; i < timeHolder.size(); i++) {
+			returnsRealized.put(timeHolder.get(i), firstHalfHolder.get(i));
 
-			for (int i = 0; i < holder.size() / 2; i++) {
-				firstHalfHolder.add(holder.get(i));
-			}
+		}
 
-			ArrayList<Double> secondHalfHolder = new ArrayList<Double>();
+		for (int i = 0; i < timeHolder.size(); i++) {
+			returnsRealized2.put(timeHolder.get(i), secondHalfHolder.get(i));
+		}
 
-			for (int i = holder.size() / 2; i < holder.size(); i++) {
-				secondHalfHolder.add(holder.get(i));
-			}
+		XYChart.Series<String, Double> anotherOne = new XYChart.Series<String, Double>();
+		XYChart.Series<String, Double> anotherOne2 = new XYChart.Series<String, Double>();
 
-			for (int i = 0; i < timeHolder.size(); i++) {
-				returnsRealized.put(timeHolder.get(i), firstHalfHolder.get(i));
+		ObservableList<XYChart.Data<String, Double>> data = FXCollections.observableArrayList();
+		ObservableList<XYChart.Data<String, Double>> data2 = FXCollections.observableArrayList();
 
-			}
+		for (Entry<String, Double> e1 : returnsRealized.entrySet()) {
+			String k1 = String.valueOf(e1.getKey());
+			Double v = e1.getValue();
 
-			for (int i = 0; i < timeHolder.size(); i++) {
-				returnsRealized2.put(timeHolder.get(i), secondHalfHolder.get(i));
-			}
+			data.add(new Data<String, Double>(k1, v));
+		}
 
-			XYChart.Series<String, Double> anotherOne = new XYChart.Series<String, Double>();
-			XYChart.Series<String, Double> anotherOne2 = new XYChart.Series<String, Double>();
+		for (Entry<String, Double> e1 : returnsRealized2.entrySet()) {
+			String k1 = String.valueOf(e1.getKey());
+			Double v = e1.getValue();
 
-			ObservableList<XYChart.Data<String, Double>> data = FXCollections.observableArrayList();
-			ObservableList<XYChart.Data<String, Double>> data2 = FXCollections.observableArrayList();
+			data2.add(new Data<String, Double>(k1, v));
+		}
 
-			for (Entry<String, Double> e1 : returnsRealized.entrySet()) {
-				String k1 = String.valueOf(e1.getKey());
-				Double v = e1.getValue();
+		Chart.getData().clear();
+		anotherOne.setName("Portfolio Returns");
+		anotherOne2.setName("S&P 500 Returns");
+		anotherOne2.getData().addAll(data2);
+		anotherOne.getData().addAll(data);
+		Chart.getData().addAll(anotherOne, anotherOne2);
 
-				data.add(new Data<String, Double>(k1, v));
-			}
-
-			for (Entry<String, Double> e1 : returnsRealized2.entrySet()) {
-				String k1 = String.valueOf(e1.getKey());
-				Double v = e1.getValue();
-
-				data2.add(new Data<String, Double>(k1, v));
-			}
-
-			Chart.getData().clear();
-			anotherOne.setName("Portfolio Returns");
-			anotherOne2.setName("S&P 500 Returns");
-			anotherOne2.getData().addAll(data2);
-			anotherOne.getData().addAll(data);
-			Chart.getData().addAll(anotherOne, anotherOne2);
-
-		
 	}
 
 	/**

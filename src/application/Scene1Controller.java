@@ -15,11 +15,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.fxml.Initializable;
 
 public class Scene1Controller implements Initializable {
 
-	boolean isOpen = false;
+	public static boolean isOpen = false;
 
 	@FXML
 	private AnchorPane introScene;
@@ -73,10 +74,14 @@ public class Scene1Controller implements Initializable {
 					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 					stage.setScene(scene);
 					stage.show();
+					stage.setOnCloseRequest((WindowEvent Event) -> {
+						isOpen = false;
+						
+					});
 				} catch (Exception e1) {
 					// TODO: handle exception
 				}
-			}else {
+			} else {
 				System.out.println("this application is already open !");
 			}
 		});

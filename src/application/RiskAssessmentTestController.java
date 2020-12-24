@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -380,7 +381,12 @@ public class RiskAssessmentTestController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
+	
+	
+	
 
 	public void SwitchScenes() {
 		ratAnchorPane.setId("ratAnchorPane");

@@ -305,6 +305,9 @@ public class PortfolioController implements Initializable {
 			}
 		}
 
+		
+		//so right now this is taking the response that anytime the button is clicked it is returning the weights
+		//I don't like this and want to fix it 
 		for (Double double1 : disJoint) {
 			Button tempGuy = new Button(double1.toString());
 			tempGuy.setPrefWidth(85);

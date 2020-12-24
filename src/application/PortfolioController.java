@@ -297,7 +297,11 @@ public class PortfolioController implements Initializable {
 
 		for (int i = 0; i < Weights.length; i++) {
 			for (int j = 0; j < Weights[i].length; j++) {
-				disJoint.add(Weights[i][j]);
+				
+				//rounding by using String Builder since there's no built in easy way to round in java
+				String s = new StringBuilder(String.valueOf(Weights[i][j])).substring(0, 4).toString();
+				
+				disJoint.add(Double.valueOf(s));
 			}
 		}
 
@@ -351,11 +355,12 @@ public class PortfolioController implements Initializable {
 
 		String[] risks = runtest.getRisks();
 
+		
+		//setting the three metrics
 		metricOne.setText("" + runtest.getDrawDown());
 		metricOne.setAlignment(Pos.CENTER);
 		metricTwo.setText("" + runtest.getSharpeRatio());
 		metricTwo.setAlignment(Pos.CENTER);
-
 		metricThree.setText("" + runtest.getRiskRating());
 		metricThree.setAlignment(Pos.CENTER);
 

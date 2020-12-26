@@ -1,14 +1,15 @@
 package application;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
@@ -127,6 +128,14 @@ public class PortfolioController implements Initializable {
 
 	HashMap<String, Double> returnsRealized = new LinkedHashMap<String, Double>();
 	HashMap<String, Double> returnsRealized2 = new LinkedHashMap<String, Double>();
+
+	HashMap<String, Double> trackPortfolio = new HashMap<String, Double>();
+
+	// the purpose of this is to check whether or not the weight is already
+	// visualized on the GUI
+	HashMap<String, Boolean> trackPortfolioOnGUI = new HashMap<String, Boolean>();
+
+	private int counter = 0;
 
 	@FXML
 	private LineChart<String, Double> Chart;
@@ -312,17 +321,42 @@ public class PortfolioController implements Initializable {
 			}
 		}
 
+		ArrayList<String> thisGuy = new ArrayList<String>(
+				Arrays.asList("SPY", "QQQ", "SCHH", "XLF", "RWM", "UVXY", "GLD", "REK"));
+
+		for (int i = 0; i < thisGuy.size(); i++) {
+			Double disJointGet = 0.0;
+			try {
+				disJointGet = disJoint.get(i);
+			} catch (Exception e) {
+				disJointGet = -999999.0;
+			}
+
+			trackPortfolio.put(thisGuy.get(i), disJointGet);
+			if (counter == 0) {
+				trackPortfolioOnGUI.put(thisGuy.get(i), false);
+			}
+
+		}
+
 		// so right now this is taking the response that anytime the button is clicked
 		// it is returning the weights
 		// I don't like this and want to fix it
-		for (Double double1 : disJoint) {
-			Button tempGuy = new Button(double1.toString());
-			tempGuy.setPrefWidth(85);
-			tempGuy.setPrefHeight(2);
-			tempGuy.setId("futureWeights");
-			futureWeights.getChildren().add(tempGuy);
-		}
+		for (String s1 : trackPortfolio.keySet()) {
 
+			if (trackPortfolioOnGUI.get(s1) == false && trackPortfolio.get(s1) != -999999.0) {
+
+				trackPortfolioOnGUI.replace(s1, true);
+				Button tempGuy = new Button(trackPortfolio.get(s1).toString());
+				tempGuy.setPrefWidth(85);
+				tempGuy.setPrefHeight(2);
+				tempGuy.setId("futureWeights");
+				futureWeights.getChildren().add(tempGuy);
+			} else {
+				System.out.println("the weight is already being visualized");
+			}
+		}
+		this.counter++;
 	}
 
 	/**
